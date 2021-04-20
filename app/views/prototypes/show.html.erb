@@ -11,11 +11,9 @@
           <%= link_to "削除する", prototype_path, method: :delete, class: :prototype__btn %>
         </div>
         <% end %>
-      <% if user_signed_in? #&& current_user.id == @prototype.user_id %>
       <div class="prototype__image">
         <%= image_tag @prototype.image %>
       </div>
-      <% end %>
       <div class="prototype__body">
         <div class="prototype__detail">
           <p class="detail__title">キャッチコピー</p>
@@ -33,7 +31,8 @@
       <div class="prototype__comments">
         <%# ログインしているユーザーには以下のコメント投稿フォームを表示する %>
         <% if user_signed_in? %>
-          <%= form_with(model:[@prototype,@comment],local:true) do |f| %> 
+          <%= form_with model:[@prototype,@comment], local: true do |f| %> 
+          <div class="field">
               <%= f.label :text, "コメント" %><br />
               <%= f.text_field :text %>
             </div>
@@ -46,12 +45,12 @@
         <ul class="comments_lists">
           <%# 投稿に紐づくコメントを一覧する処理を記述する %>
             <ul class="comments_lists">
-              <%# if @comments %>
+              <% if @comments %>
               <% @comments.each do |comment| %>
               <li class="comments_list">
               <%= comment.text %>
-              <%= link_to "(#{@prototype.user.name})", "/users/#{current_user.id}", class: :comment_user %>
-              <%# end %>
+              <%= link_to "(#{comment.user.name})", "/users/#{current_user.id}", class: :comment_user %>
+              <% end %>
               <% end %>
             </li>
           <%# // 投稿に紐づくコメントを一覧する処理を記述する %>

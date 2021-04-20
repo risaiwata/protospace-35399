@@ -18,6 +18,11 @@
         </div>
 
         <div class="field">
+          <%= f.label :password_confirmation, "パスワード（再入力）" %><br />
+          <%= f.password_field :password_confirmation, id:"user_password", autocomplete: "current-password" %>
+        </div>
+
+        <div class="field">
           <%= f.label :name, "ユーザー名" %><br />
           <%= f.text_field :name, id:"user_name", autofocus: true, autocomplete: "name" %>
         </div>

@@ -1,6 +1,17 @@
 class CommentsController < ApplicationController
 
+  #
+  #def index
+    #@comments = Comment.all
+    #@prototype = Prototype.new
+  #end
+
+  #def show
+    #@post = Post.find(params[:id])
+  #end
+
   def create
+    
     #@comment = Comment.create(comment_params)
     @comment = Comment.new(comment_params)
     if @comment.save
